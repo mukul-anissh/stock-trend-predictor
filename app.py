@@ -41,19 +41,19 @@ def fetch_and_preprocess(ticker: str, _scaler):
     df.columns = ["Date", "Ticker", "Close", "High", "Low", "Open", "Volume"]
 
     # feature engineering to add techincal indicators
-    df["RSI"] = ta.RSI(df["Close"], timeperiod=14)
-    df["SMA"] = ta.SMA(df["Close"], timeperiod=14)
-    df["EMA"] = ta.EMA(df["Close"], timeperiod=14)
-    macd = ta.MACD(df["Close"], fastperiod=12, slowperiod=26, signalperiod=9)
+    df["RSI"] = ta.rsi(df["Close"], timeperiod=14)
+    df["SMA"] = ta.sma(df["Close"], timeperiod=14)
+    df["EMA"] = ta.ema(df["Close"], timeperiod=14)
+    macd = ta.macd(df["Close"], fastperiod=12, slowperiod=26, signalperiod=9)
     df["MACD"], df["MACD_Signal"], df["MACD_Hist"] = macd
-    stoch = ta.STOCHF(df["High"], df["Low"], df["Close"], fastk_period=14, fastd_period=3)
+    stoch = ta.stochf(df["High"], df["Low"], df["Close"], fastk_period=14, fastd_period=3)
     df["Stoch_K"], df["Stoch_D"] = stoch
-    df["Williams %R"] = ta.WILLR(df["High"], df["Low"], df["Close"], timeperiod=14)
-    df["ATR"] = ta.ATR(df["High"], df["Low"], df["Close"], timeperiod=14)
-    df["CCI"] = ta.CCI(df["High"], df["Low"], df["Close"], timeperiod=14)
-    df["ADX"] = ta.ADX(df["High"], df["Low"], df["Close"], timeperiod=14)
-    df["OBV"] = ta.OBV(df["Close"], df["Volume"])
-    df["MFI"] = ta.MFI(df["High"], df["Low"], df["Close"], df["Volume"], timeperiod=14)
+    df["Williams %R"] = ta.willr(df["High"], df["Low"], df["Close"], timeperiod=14)
+    df["ATR"] = ta.atr(df["High"], df["Low"], df["Close"], timeperiod=14)
+    df["CCI"] = ta.cci(df["High"], df["Low"], df["Close"], timeperiod=14)
+    df["ADX"] = ta.adx(df["High"], df["Low"], df["Close"], timeperiod=14)
+    df["OBV"] = ta.obv(df["Close"], df["Volume"])
+    df["MFI"] = ta.mfi(df["High"], df["Low"], df["Close"], df["Volume"], timeperiod=14)
 
     df.dropna(inplace=True)
     df["Date"] = pd.to_datetime(df["Date"])
