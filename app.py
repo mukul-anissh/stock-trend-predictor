@@ -51,7 +51,7 @@ def fetch_and_preprocess(ticker: str, _scaler):
     df["Williams %R"] = ta.willr(df["High"], df["Low"], df["Close"], timeperiod=14)
     df["ATR"] = ta.atr(df["High"], df["Low"], df["Close"], timeperiod=14)
     df["CCI"] = ta.cci(df["High"], df["Low"], df["Close"], timeperiod=14)
-    df["ADX"] = ta.adx(df["High"], df["Low"], df["Close"], timeperiod=14)
+    df["ADX"] = ta.adx(df["High"], df["Low"], df["Close"], timeperiod=14).iloc[:, 0]
     df["OBV"] = ta.obv(df["Close"], df["Volume"])
     df["MFI"] = ta.mfi(df["High"], df["Low"], df["Close"], df["Volume"], timeperiod=14)
 
