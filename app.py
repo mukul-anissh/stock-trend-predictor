@@ -44,7 +44,7 @@ def fetch_and_preprocess(ticker: str, _scaler):
     df["RSI"] = ta.rsi(df["Close"], timeperiod=14)
     df["SMA"] = ta.sma(df["Close"], timeperiod=14)
     df["EMA"] = ta.ema(df["Close"], timeperiod=14)
-    macd = ta.macd(df["Close"], fastperiod=12, slowperiod=26, signalperiod=9)
+    macd = ta.macd(df["Close"], fastperiod=12, slowperiod=26, signalperiod=9).values
     df["MACD"], df["MACD_Signal"], df["MACD_Hist"] = macd
     stoch = ta.stoch(df["High"], df["Low"], df["Close"], fastk_period=14, fastd_period=3)
     df["Stoch_K"], df["Stoch_D"] = stoch
