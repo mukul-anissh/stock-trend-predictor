@@ -3,5 +3,6 @@ yfinance>=0.2.31
 pandas>=2.0.3
 numpy>=1.24.0
 scikit-learn>=1.1.0
-tensorflow>=2.19.0
 TA-Lib-binary>=0.4.24
+plotly>=5.17.0
+tensorflow==2.12.1
