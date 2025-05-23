@@ -1,0 +1,9 @@
+streamlit
+yfinance
+pandas
+numpy
+pickle
+talib
+tensorflow
+datetime
+sklearn.preprocessing
