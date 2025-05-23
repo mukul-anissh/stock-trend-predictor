@@ -3,5 +3,5 @@ pandas
 numpy
 yfinance
 pandas-ta
-tensorflow
+tensorflow==2.15.0
 scikit-learn
