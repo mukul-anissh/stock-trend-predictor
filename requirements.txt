@@ -3,4 +3,3 @@ yfinance==0.2.61
 pandas==2.2.3
 numpy==1.24.4
 scikit-learn==1.6.1
-tensorflow==2.12.1
