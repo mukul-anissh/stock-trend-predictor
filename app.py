@@ -44,49 +44,19 @@ def fetch_and_preprocess(ticker: str, _scaler):
     df["RSI"] = ta.rsi(df["Close"], length=14)
     df["SMA"] = ta.sma(df["Close"], length=14)
     df["EMA"] = ta.ema(df["Close"], length=14)
-    
-    # 2) MACD → returns a DataFrame with three float columns
-    macd_df = ta.macd(
-        close=df["Close"],
-        fast=12, slow=26, signal=9
-    )
-    # macd_df.columns might be ['MACD_12_26_9','MACDs_12_26_9','MACDh_12_26_9']
-    df["MACD"]        = macd_df.iloc[:, 0]
+    macd_df = ta.macd(close=df["Close"], fast=12, slow=26, signal=9)
+    df["MACD"] = macd_df.iloc[:, 0]
     df["MACD_Signal"] = macd_df.iloc[:, 1]
-    df["MACD_Hist"]   = macd_df.iloc[:, 2]
-    
-    # 3) Stochastic Oscillator → two columns
-    stoch_df = ta.stoch(
-        high=df["High"],
-        low=df["Low"],
-        close=df["Close"],
-        k=14, d=3
-    )
+    df["MACD_Hist"] = macd_df.iloc[:, 2]
+    stoch_df = ta.stoch(high=df["High"], low=df["Low"], close=df["Close"], k=14, d=3)
     df["Stoch_K"] = stoch_df.iloc[:, 0]
     df["Stoch_D"] = stoch_df.iloc[:, 1]
-    
-    # 4) Other indicators (single‐series functions)
-    df["Williams %R"] = ta.willr(
-        high=df["High"], low=df["Low"], close=df["Close"], length=14
-    )
-    df["ATR"]         = ta.atr(
-        high=df["High"], low=df["Low"], close=df["Close"], length=14
-    )
-    df["CCI"]         = ta.cci(
-        high=df["High"], low=df["Low"], close=df["Close"], length=14
-    )
-    df["ADX"]         = ta.adx(
-        high=df["High"], low=df["Low"], close=df["Close"], length=14
-    ).iloc[:, 0]    # first col is the ADX itself
-    
-    # 5) Volume‐based
-    df["OBV"]         = ta.obv(
-        close=df["Close"], volume=df["Volume"]
-    )
-    df["MFI"]         = ta.mfi(
-        high=df["High"], low=df["Low"], close=df["Close"],
-        volume=df["Volume"], length=14
-    )
+    df["Williams %R"] = ta.willr(high=df["High"], low=df["Low"], close=df["Close"], length=14)
+    df["ATR"] = ta.atr(high=df["High"], low=df["Low"], close=df["Close"], length=14)
+    df["CCI"] = ta.cci(high=df["High"], low=df["Low"], close=df["Close"], length=14)
+    df["ADX"] = ta.adx(high=df["High"], low=df["Low"], close=df["Close"], length=14).iloc[:, 0]  
+    df["OBV"] = ta.obv(close=df["Close"], volume=df["Volume"])
+    df["MFI"] = ta.mfi(high=df["High"], low=df["Low"], close=df["Close"], volume=df["Volume"], length=14)
 
     df.dropna(inplace=True)
     df["Date"] = pd.to_datetime(df["Date"])
