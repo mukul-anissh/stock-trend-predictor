@@ -3,6 +3,6 @@ streamlit
 pandas
 numpy
 yfinance
-ta-lib-bin==0.4.24
+TA-Lib-Precompiled>=0.4.24
 tensorflow==2.18.0
 scikit-learn
