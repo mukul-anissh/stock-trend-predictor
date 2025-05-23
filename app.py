@@ -123,3 +123,9 @@ st.write(
     f"**Predicted {ticker} close price on {future_date}:**   ",
     f"**${predicted_price:,.2f}**"
 )
+
+ticker_obj = yf.Ticker(ticker)
+today_data = ticker_obj.history(period='1d')
+current_price = today_data['Close'].iloc[0] if not today_data.empty else None
+if current_price is not None:
+    st.write(f"**Current {ticker} close price (today): ${current_price:.2f}**")
