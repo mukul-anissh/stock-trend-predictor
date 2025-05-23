@@ -3,7 +3,7 @@ import yfinance as yf
 import pandas as pd
 import numpy as np
 import pickle
-import talib as ta
+import pandas-ta as ta
 import tensorflow as tf
 from datetime import date
 from sklearn.preprocessing import MinMaxScaler
